@@ -88,7 +88,7 @@ export default function Home() {
               </h1>
               <h2 className="font-poppins text-xl text-white">
                 We are here to help you to talk anything, anytime, and anywhere
-                with helpful, creative, smart and very friendly "friends".
+                with helpful, creative, smart and very friendly &quot;friends&quot;.
               </h2>
               <div className="hidden lg:block">
                 <div className="py-2 flex justify-center items-center border-white border-2  text-white rounded-lg mt-4 hover:bg-white hover:text-black cursor-pointer transform lg:hover:scale-105 duration-300 ease-in-out">
