@@ -108,7 +108,7 @@ export default function Home() {
     let textResponse;
     if (responseText == "") {
       textResponse =
-        "I'm sorry, i didn't understand what do you mean, please repeat.";
+        "I&apos;m sorry, i didn&apos;t understand what do you mean, please repeat.";
     } else {
       textResponse = responseText;
     }

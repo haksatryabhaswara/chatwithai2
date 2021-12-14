@@ -4,10 +4,8 @@ export default function handler(req, res) {
       res.status(400).send({ message: "Missing Credentials.." });
       return;
     } else {
-    //   console.log(req.body.prompt);
+      //   console.log(req.body.prompt);
       // console.log(req.headers.token);
-      const test =
-        "Human: Halo i'm Brain, i want to talk, can you accompany me?\nAI: No, i'm pretty clear. You're just not a race.\nHuman:i got no race\nAI:";
       if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
         res.status(405).end();
         return resolve();
