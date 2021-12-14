@@ -84,7 +84,7 @@ export default function Home() {
           <div className="lg:h-100% lg:w-100% flex justify-center items-center">
             <div>
               <h1 className="font-bold font-poppins text-4xl mb-2 text-white">
-                TalcAI <b className="text-sm">#JustTalk</b>
+                TalcAI <b className="text-sm">JustTalk</b>
               </h1>
               <h2 className="font-poppins text-xl text-white">
                 We are here to help you to talk anything, anytime, and anywhere
