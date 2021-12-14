@@ -14,7 +14,7 @@ export default function Home() {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
-      data: `Hello i'm ${nama}, i need someone to talk`,
+      data: `Hello im ${nama}, i need someone to talk`,
     };
     e.preventDefault();
     setLC((listChat) => [...listChat, dataNEWLINE]);
@@ -109,7 +109,7 @@ export default function Home() {
     let textResponse;
     if (responseText == "") {
       textResponse =
-        "I'm sorry, i didn't understand what do you mean, please repeat.";
+        "Im sorry, i didnt understand what do you mean, please repeat.";
     } else {
       textResponse = responseText;
     }
