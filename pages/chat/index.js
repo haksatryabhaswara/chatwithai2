@@ -14,7 +14,7 @@ export default function Home() {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
-      data: `Hello, i need someone to talk`,
+      data: `Hello i'm ${nama}, i need someone to talk`,
     };
     e.preventDefault();
     setLC((listChat) => [...listChat, dataNEWLINE]);
@@ -78,9 +78,10 @@ export default function Home() {
     setPC(true);
     let dataPrompt;
     if (listChat.length == 1) {
-      dataPrompt = `${listChat[0].sender}: ${listChat[0].data}\nAI:`;
+      dataPrompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
     } else {
       dataPrompt =
+        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n" +
         listChat.map(({ sender, data }) => sender + ": " + data).join("\\n") +
         "\nAI:";
     }
@@ -108,7 +109,7 @@ export default function Home() {
     let textResponse;
     if (responseText == "") {
       textResponse =
-        "I&apos;m sorry, i didn&apos;t understand what do you mean, please repeat.";
+        "I'm sorry, i didn't understand what do you mean, please repeat.";
     } else {
       textResponse = responseText;
     }

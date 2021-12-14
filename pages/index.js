@@ -10,7 +10,7 @@ export default function Home() {
     {
       id: Math.floor(Math.random * 100000),
       sender: "You",
-      data: "Hi! I&apos;m Valencia, i want to talk!",
+      data: "Hi! I'm Valencia, i want to talk!",
     },
     {
       id: Math.floor(Math.random * 100000),
@@ -20,17 +20,17 @@ export default function Home() {
     {
       id: Math.floor(Math.random * 100000),
       sender: "You",
-      data: "There&apos;s something in the sky, can you explain it?",
+      data: "There's something in the sky, can you explain it?",
     },
     {
       id: Math.floor(Math.random * 100000),
       sender: "AI",
-      data: "No, i haven&apos;t been there for a long time",
+      data: "No, i haven't been there for a long time",
     },
     {
       id: Math.floor(Math.random * 100000),
       sender: "You",
-      data: "Why you didn&apos;t know?",
+      data: "Why you didn't know?",
     },
     {
       id: Math.floor(Math.random * 100000),
@@ -50,7 +50,7 @@ export default function Home() {
     {
       id: Math.floor(Math.random * 100000),
       sender: "You",
-      data: "That&apos;s not a joke",
+      data: "That's not a joke",
     },
     {
       id: Math.floor(Math.random * 100000),
