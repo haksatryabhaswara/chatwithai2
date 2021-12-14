@@ -153,6 +153,7 @@ export default function Home() {
                 <div className="w-100% mt-4 overflow-auto max-h-75 lg:max-h-70 min-h-65">
                   {listChat.map((item, i) => (
                     <div
+                      key={item.id}
                       className={`flex ${
                         item.sender == "Human"
                           ? "justify-end items-end"

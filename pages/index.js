@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 import React, { useEffect, useState } from "react";
 
@@ -161,9 +162,11 @@ export default function Home() {
             </div>
           </div>
           <div className="block lg:hidden">
-            <div className="py-2 flex justify-center items-center border-white border-2  text-white rounded-lg -mt-0 hover:bg-white hover:text-black cursor-pointer transform lg:hover:scale-105 duration-300 ease-in-out">
-              <b className="font-poppins">Start Talk</b>
-            </div>
+            <Link href="/chat">
+              <div className="py-2 flex justify-center items-center border-white border-2  text-white rounded-lg -mt-0 hover:bg-white hover:text-black cursor-pointer transform lg:hover:scale-105 duration-300 ease-in-out">
+                <b className="font-poppins">Start Talk</b>
+              </div>
+            </Link>
             <h3 className="font-poppins font-bold text-xs text-white mt-2 text-center">
               Under BASUDARA Team
             </h3>
