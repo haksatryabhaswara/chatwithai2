@@ -118,7 +118,7 @@ export default function Home() {
               </h2>
               <div className="hidden lg:block">
                 <Link href="/chat">
-                  <a href="/chat">
+                  <a>
                     <div className="py-2 flex justify-center items-center border-white border-2  text-white rounded-lg mt-4 hover:bg-white hover:text-black cursor-pointer transform lg:hover:scale-105 duration-300 ease-in-out">
                       <b className="font-poppins">Start Talk</b>
                     </div>
@@ -194,7 +194,7 @@ export default function Home() {
           </div>
           <div className="block lg:hidden">
             <Link href="/chat">
-              <a href="/chat">
+              <a>
                 <div className="py-2 flex justify-center items-center border-white border-2  text-white rounded-lg -mt-0 hover:bg-white hover:text-black cursor-pointer transform lg:hover:scale-105 duration-300 ease-in-out">
                   <b className="font-poppins">Start Talk</b>
                 </div>
