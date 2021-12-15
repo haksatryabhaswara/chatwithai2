@@ -68,11 +68,11 @@ export default function Home() {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TalcAI #JustTalk</title>
-        <meta name="title" content="TalcAI #JustTalk" />
+        <title>TalcAI | JustTalk</title>
+        <meta name="title" content="TalcAI | JustTalk" />
         <meta
           name="description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you talk."
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
 
         <meta property="og:type" content="website" />
@@ -80,7 +80,7 @@ export default function Home() {
         <meta property="og:title" content="TalcAI #JustTalk" />
         <meta
           property="og:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you talk."
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="og:image"
@@ -92,7 +92,7 @@ export default function Home() {
         <meta property="twitter:title" content="TalcAI #JustTalk" />
         <meta
           property="twitter:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you talk."
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="twitter:image"

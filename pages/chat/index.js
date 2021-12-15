@@ -148,10 +148,35 @@ export default function Home() {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TalcAI | Just Talk</title>
+        <title>TalcAI | JustTalk</title>
+        <meta name="title" content="TalcAI | JustTalk" />
         <meta
           name="description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you talk."
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://chatwithai.vercel.app/" />
+        <meta property="og:title" content="TalcAI #JustTalk" />
+        <meta
+          property="og:description"
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+        />
+        <meta
+          property="og:image"
+          content="https://chatwithai.vercel.app/android-chrome-512x512.png"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://chatwithai.vercel.app/" />
+        <meta property="twitter:title" content="TalcAI #JustTalk" />
+        <meta
+          property="twitter:description"
+          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+        />
+        <meta
+          property="twitter:image"
+          content="https://chatwithai.vercel.app/android-chrome-512x512.png"
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Poppins:wght@300;400;500;700&display=swap"
