@@ -17,7 +17,7 @@ export default function Home() {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
-      data: `Hello my name is ${nama}, anybody in this room?`,
+      data: `Hello, is someone here?`,
     };
     // e.preventDefault();
     setLC((listChat) => [...listChat, dataNEWLINE]);
@@ -81,8 +81,6 @@ export default function Home() {
     let chooseAI;
     if (nomor % 2 == 0) {
       chooseAI = "Marv is a chatbot that reluctantly answers questions.";
-      // chooseAI =
-      // "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
     } else {
       chooseAI =
         "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
@@ -115,8 +113,8 @@ export default function Home() {
         if (responseJson.choices[0] == undefined) {
           AILine({ responseText: "Please talk to us later.." });
         } else {
-          if (responseJson.choices[0].text.length > 110) {
-            dataAI = responseJson.choices[0].text + "...";
+          if (responseJson.choices[0].text.length > 140) {
+            dataAI = responseJson.choices[0].text + " (cont)";
           } else {
             dataAI = responseJson.choices[0].text;
           }
