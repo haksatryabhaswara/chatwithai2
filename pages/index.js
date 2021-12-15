@@ -123,7 +123,7 @@ export default function Home() {
                   </div>
                 </Link>
                 <h3 className="font-poppins font-bold text-xs text-white mt-2 text-center">
-                  Under BASUDARA Team
+                  Under BASUDARA Team &#169; 2021
                 </h3>
               </div>
             </div>
