@@ -78,7 +78,9 @@ export default function Home() {
     setPC(true);
     let chooseAI;
     if (nomor % 2 == 0) {
-      chooseAI = "Marv is a chatbot that reluctantly answers questions.";
+      // chooseAI = "Marv is a chatbot that reluctantly answers questions.";
+      chooseAI =
+        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
     } else {
       chooseAI =
         "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
