@@ -108,12 +108,17 @@ export default function Home() {
       .then((responseJson) => {
         // console.log(responseJson.choices[0].text);
         let dataAI;
-        if (responseJson.choices[0].text.length > 110) {
-          dataAI = responseJson.choices[0].text + "...";
+        if (responseJson.choices[0] == undefined) {
+          AILine({ responseText: "Please talk to us later.." });
         } else {
-          dataAI = responseJson.choices[0].text;
+          if (responseJson.choices[0].text.length > 110) {
+            dataAI = responseJson.choices[0].text + "...";
+          } else {
+            dataAI = responseJson.choices[0].text;
+          }
+          AILine({ responseText: dataAI });
         }
-        AILine({ responseText: dataAI });
+
         setPC(false);
       });
   };
@@ -163,7 +168,7 @@ export default function Home() {
                     may change in the future.
                   </b>
                 </div>
-                
+
                 <div className="w-100% mt-4 overflow-auto max-h-70 lg:max-h-65 min-h-65">
                   {listChat.map((item, i) => (
                     <div
