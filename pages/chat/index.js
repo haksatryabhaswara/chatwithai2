@@ -216,7 +216,7 @@ export default function Home() {
                       <input
                         autoFocus
                         type=""
-                        maxlength="100"
+                        maxLength={"100"}
                         value={chat}
                         placeholder={"Your message.."}
                         onChange={(e) => {
@@ -290,7 +290,7 @@ export default function Home() {
                   <input
                     autoFocus
                     type=""
-                    maxlength="15"
+                    maxLength={"15"}
                     value={nama}
                     placeholder={""}
                     onChange={(e) => {
