@@ -1,12 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
+import { Dialog } from "@headlessui/react";
 
 export default function Home() {
   const [listChat, setLC] = useState([]);
   const [chat, setChat] = useState("");
   const [nama, setNama] = useState("");
   const [stage, setStage] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [prosesChat, setPC] = useState(false);
   const [nomor, setNomor] = useState(Math.floor(Math.random() * 8 + 1));
@@ -78,9 +80,9 @@ export default function Home() {
     setPC(true);
     let chooseAI;
     if (nomor % 2 == 0) {
-      // chooseAI = "Marv is a chatbot that reluctantly answers questions.";
-      chooseAI =
-        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
+      chooseAI = "Marv is a chatbot that reluctantly answers questions.";
+      // chooseAI =
+      // "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
     } else {
       chooseAI =
         "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
@@ -214,6 +216,7 @@ export default function Home() {
                       <input
                         autoFocus
                         type=""
+                        maxlength="100"
                         value={chat}
                         placeholder={"Your message.."}
                         onChange={(e) => {
@@ -272,7 +275,7 @@ export default function Home() {
                   if (nama == "") {
                     alert("Please fill in your name first");
                   } else {
-                    newUser();
+                    setIsOpen(true);
                   }
                 }}
               >
@@ -287,6 +290,7 @@ export default function Home() {
                   <input
                     autoFocus
                     type=""
+                    maxlength="15"
                     value={nama}
                     placeholder={""}
                     onChange={(e) => {
@@ -301,7 +305,7 @@ export default function Home() {
                       e.preventDefault();
                       nama == ""
                         ? alert("Please fill in your name first")
-                        : newUser();
+                        : setIsOpen(true);
                     }}
                     className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
                   >
@@ -327,6 +331,73 @@ export default function Home() {
               </form>
             </div>
           </div>
+          <Dialog
+            open={isOpen}
+            onClose={() => {
+              setIsOpen(false);
+              newUser();
+            }}
+            className="fixed z-10 inset-0 overflow-y-auto"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30"></Dialog.Overlay>
+            <div className="w-100% h-screen flex justify-center items-center px-4">
+              <div className="bg-white w-96 py-8 px-10 rounded-md z-20">
+                {nomor % 2 == 0 ? (
+                  <div>
+                    <iframe
+                      src="https://embed.lottiefiles.com/animation/68783"
+                      className="w-100% h-30"
+                    ></iframe>
+                    <b className="font-poppins">Bad Behavior AI</b>
+                    <p className="font-poppins">
+                      Your friend is a chatbot that reluctantly answers
+                      questions. This means that your conversation will not be
+                      directed and follow the mood of your conversing
+                    </p>
+                    <div
+                      onClick={() => {
+                        setIsOpen(false);
+                        newUser();
+                      }}
+                      className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
+                    >
+                      <div>
+                        <b className="font-poppins text-white mr-2">
+                          Talk Now!
+                        </b>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <iframe
+                      src="https://embed.lottiefiles.com/animation/87944"
+                      className="w-100% h-40"
+                    ></iframe>
+                    <b className="font-poppins">Good Behavior AI</b>
+                    <p className="font-poppins">
+                      Your friend is helpful, creative, clever, and very
+                      friendly. This means that your conversation is directed
+                      and will follow where you take this conversation
+                    </p>
+                    <div
+                      onClick={() => {
+                        setIsOpen(false);
+                        newUser();
+                      }}
+                      className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
+                    >
+                      <div>
+                        <b className="font-poppins text-white mr-2">
+                          Talk Now!
+                        </b>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Dialog>
         </main>
       )}
     </div>
