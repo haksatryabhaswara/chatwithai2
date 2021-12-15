@@ -89,7 +89,7 @@ export default function Home() {
               <h2 className="font-poppins text-xl text-white">
                 We are here to help you to talk anything, anytime, and anywhere
                 with helpful, creative, smart and very friendly
-                &quot;friends&quot;.
+                &quot;friends&quot; (or not).
               </h2>
               <div className="hidden lg:block">
                 <Link href="/chat">
