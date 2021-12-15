@@ -80,7 +80,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="px-8 py-10 lg:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen container m-auto max-w-4xl gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen container m-auto max-w-4xl gap-4 lg:gap-10">
           <div className="lg:h-100% lg:w-100% flex justify-center items-center">
             <div>
               <h1 className="font-bold font-poppins text-4xl mb-2 text-white">

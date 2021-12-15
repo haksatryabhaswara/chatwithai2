@@ -9,26 +9,26 @@ export default function Home() {
   const [stage, setStage] = useState(false);
 
   const [prosesChat, setPC] = useState(false);
+  const [nomor, setNomor] = useState(Math.floor(Math.random() * 8 + 1));
 
-  const newUser = async (e) => {
+  const newUser = async () => {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
-      data: `Hello im ${nama}, i need someone to talk`,
+      data: `Hello my name is ${nama}, anybody in this room?`,
     };
-    e.preventDefault();
+    // e.preventDefault();
     setLC((listChat) => [...listChat, dataNEWLINE]);
     setStage(true);
   };
 
-  const newLine = async (e) => {
+  const newLine = async () => {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
       data: chat,
     };
-    e.preventDefault();
-    if (listChat.length > 18) {
+    if (listChat.length > 19) {
       setLC((listChat) => [...listChat.slice(1), dataNEWLINE]);
     } else {
       setLC((listChat) => [...listChat, dataNEWLINE]);
@@ -76,12 +76,19 @@ export default function Home() {
 
   const testSend = async () => {
     setPC(true);
+    let chooseAI;
+    if (nomor % 2 == 0) {
+      chooseAI = "Marv is a chatbot that reluctantly answers questions.";
+    } else {
+      chooseAI =
+        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
+    }
     let dataPrompt;
     if (listChat.length == 1) {
-      dataPrompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
+      dataPrompt = `${chooseAI}\\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
     } else {
       dataPrompt =
-        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n" +
+        "Marv is a chatbot that reluctantly answers questions.\\n" +
         listChat.map(({ sender, data }) => sender + ": " + data).join("\\n") +
         "\nAI:";
     }
@@ -100,7 +107,13 @@ export default function Home() {
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson.choices[0].text);
-        AILine({ responseText: responseJson.choices[0].text });
+        let dataAI;
+        if (responseJson.choices[0].text.length > 110) {
+          dataAI = responseJson.choices[0].text + "...";
+        } else {
+          dataAI = responseJson.choices[0].text;
+        }
+        AILine({ responseText: dataAI });
         setPC(false);
       });
   };
@@ -140,7 +153,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {stage != "" ? (
-        <main className="px-8 py-10 lg:py-0">
+        <main className="px-8 py-0 lg:py-0">
           <div className="grid grid-cols-1 min-h-screen container m-auto max-w-4xl gap-6">
             <div className="h-100% w-100% flex justify-center items-center">
               <div className="bg-white rounded-xl shadow-lg w-100% px-4 py-4 max-w-sm">
@@ -150,8 +163,8 @@ export default function Home() {
                     may change in the future.
                   </b>
                 </div>
-
-                <div className="w-100% mt-4 overflow-auto max-h-75 lg:max-h-70 min-h-65">
+                
+                <div className="w-100% mt-4 overflow-auto max-h-70 lg:max-h-65 min-h-65">
                   {listChat.map((item, i) => (
                     <div
                       key={item.id}
@@ -185,7 +198,7 @@ export default function Home() {
                       } else {
                         if (chat == "") {
                         } else {
-                          newLine(e);
+                          newLine();
                         }
                       }
                     }}
@@ -204,12 +217,13 @@ export default function Home() {
                     </div>
                     <div
                       className="h-full col-span-2"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         if (prosesChat) {
                         } else {
                           if (chat == "") {
                           } else {
-                            newLine(e);
+                            newLine();
                           }
                         }
                       }}
@@ -244,18 +258,18 @@ export default function Home() {
         <main className="px-8">
           <div className="grid grid-cols-1 min-h-screen container m-auto max-w-sm gap-6 justify-center items-center">
             <div className="bg-white rounded-xl shadow-lg px-4 py-4 max-h-80 justify-center items-center">
-              <div className="w-100%">
-                <form
-                  className="w-100%"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (nama == "") {
-                      alert("Please fill in your name first");
-                    } else {
-                      newUser(e);
-                    }
-                  }}
-                >
+              <form
+                className="w-100%"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (nama == "") {
+                    alert("Please fill in your name first");
+                  } else {
+                    newUser();
+                  }
+                }}
+              >
+                <div className="w-100%">
                   <h1 className="font-poppins font-bold text-base text-lightgray mt-0 text-left">
                     Before you continue, we need your name to be processed into
                     the chat session
@@ -273,36 +287,37 @@ export default function Home() {
                     }}
                     className="rounded-lg border-2 border-gray w-full mt-0 py-2 px-3.5"
                   ></input>
-                </form>
-              </div>
-              <div className="w-100%">
-                <div
-                  onClick={() => {
-                    nama == ""
-                      ? alert("Please fill in your name first")
-                      : newUser();
-                  }}
-                  className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
-                >
-                  <div>
-                    <b className="font-poppins text-white mr-2">
-                      Start Session
-                    </b>
-                  </div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="white"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
                 </div>
-              </div>
+                <div className="w-100%">
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      nama == ""
+                        ? alert("Please fill in your name first")
+                        : newUser();
+                    }}
+                    className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
+                  >
+                    <div>
+                      <b className="font-poppins text-white mr-2">
+                        Start Session
+                      </b>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="white"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </main>
