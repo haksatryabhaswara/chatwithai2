@@ -156,7 +156,7 @@ export default function Home() {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://chatwithai.vercel.app/" />
+        <meta property="og:url" content="https://www.tokkuai.com//" />
         <meta property="og:title" content="TokkuAI #JustTalk" />
         <meta
           property="og:description"
@@ -164,11 +164,11 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://chatwithai.vercel.app/android-chrome-512x512.png"
+          content="https://www.tokkuai.com//android-chrome-512x512.png"
         />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://chatwithai.vercel.app/" />
+        <meta property="twitter:url" content="https://www.tokkuai.com//" />
         <meta property="twitter:title" content="TokkuAI #JustTalk" />
         <meta
           property="twitter:description"
@@ -176,7 +176,7 @@ export default function Home() {
         />
         <meta
           property="twitter:image"
-          content="https://chatwithai.vercel.app/android-chrome-512x512.png"
+          content="https://www.tokkuai.com//android-chrome-512x512.png"
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Poppins:wght@300;400;500;700&display=swap"
