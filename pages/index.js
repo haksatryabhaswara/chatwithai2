@@ -68,8 +68,8 @@ export default function Home() {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TalcAI | JustTalk</title>
-        <meta name="title" content="TalcAI | JustTalk" />
+        <title>TokkuAI | JustTalk</title>
+        <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -77,7 +77,7 @@ export default function Home() {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://chatwithai.vercel.app/" />
-        <meta property="og:title" content="TalcAI #JustTalk" />
+        <meta property="og:title" content="TokkuAI #JustTalk" />
         <meta
           property="og:description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -89,7 +89,7 @@ export default function Home() {
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://chatwithai.vercel.app/" />
-        <meta property="twitter:title" content="TalcAI #JustTalk" />
+        <meta property="twitter:title" content="TokkuAI #JustTalk" />
         <meta
           property="twitter:description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -109,7 +109,7 @@ export default function Home() {
           <div className="lg:h-100% lg:w-100% flex justify-center items-center">
             <div>
               <h1 className="font-bold font-poppins text-4xl mb-2 text-white">
-                TalcAI <b className="text-sm">#JustTalk</b>
+                TokkuAI <b className="text-sm">#JustTalk</b>
               </h1>
               <h2 className="font-poppins text-xl text-white">
                 We are here to help you to talk anything, anytime, and anywhere

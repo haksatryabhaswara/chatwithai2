@@ -148,8 +148,8 @@ export default function Home() {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TalcAI | JustTalk</title>
-        <meta name="title" content="TalcAI | JustTalk" />
+        <title>TokkuAI | JustTalk</title>
+        <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -157,7 +157,7 @@ export default function Home() {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://chatwithai.vercel.app/" />
-        <meta property="og:title" content="TalcAI #JustTalk" />
+        <meta property="og:title" content="TokkuAI #JustTalk" />
         <meta
           property="og:description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -169,7 +169,7 @@ export default function Home() {
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://chatwithai.vercel.app/" />
-        <meta property="twitter:title" content="TalcAI #JustTalk" />
+        <meta property="twitter:title" content="TokkuAI #JustTalk" />
         <meta
           property="twitter:description"
           content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
@@ -377,6 +377,9 @@ export default function Home() {
                       questions. This means that your conversation will not be
                       directed and follow the mood of your conversing
                     </p>
+                    <b className="font-poppins text-xs text-gray mt-2">
+                      NOTE: Please remember, this model is still under training, so there is a possibility of misscommunication.
+                    </b>
                     <div
                       onClick={() => {
                         setIsOpen(false);
@@ -403,6 +406,9 @@ export default function Home() {
                       friendly. This means that your conversation is directed
                       and will follow where you take this conversation
                     </p>
+                    <b className="font-poppins text-xs text-gray mt-2">
+                      NOTE: Please remember, this model is still under training, so there is a possibility of misscommunication.
+                    </b>
                     <div
                       onClick={() => {
                         setIsOpen(false);
