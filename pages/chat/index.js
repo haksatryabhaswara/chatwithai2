@@ -2,13 +2,16 @@ import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { Dialog } from "@headlessui/react";
+import ReCAPTCHA from "react-google-recaptcha";
 
-export default function Home() {
+export default function Home({ siteKey }) {
+  
   const [listChat, setLC] = useState([]);
   const [chat, setChat] = useState("");
   const [nama, setNama] = useState("");
   const [stage, setStage] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const recaptchaRef = React.createRef();
 
   const [prosesChat, setPC] = useState(false);
   const [nomor, setNomor] = useState(Math.floor(Math.random() * 8 + 1));
@@ -47,17 +50,6 @@ export default function Home() {
   useEffect(() => {
     scrollToBottom();
   }, [listChat]);
-
-  // useEffect(() => {
-  //   console.log(
-  //     listChat.map(({ sender, data }) => sender + ": " + data).join("\\n")
-  //   );
-  //   testSend({
-  //     dataX: listChat
-  //       .map(({ sender, data }) => sender + ": " + data)
-  //       .join("\\n"),
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (listChat.length > 0) {
@@ -144,6 +136,24 @@ export default function Home() {
       setLC((listChat) => [...listChat, dataNEWLINE]);
     }
     setChat("");
+  };
+
+  const handleCap = async () => {
+    recaptchaRef.current.execute();
+  };
+
+  const onReCAPTCHAChange = (captchaCode) => {
+    // If the reCAPTCHA code is null or undefined indicating that
+    // the reCAPTCHA was expired then return early
+    if (!captchaCode) {
+      return;
+    }
+    // Else reCAPTCHA was executed successfully so proceed with the
+    // alert
+    setIsOpen(true);
+    // Reset the reCAPTCHA so that it can be executed again if user
+    // submits another email.
+    recaptchaRef.current.reset();
   };
   return (
     <div className="bg-gray-700">
@@ -298,7 +308,7 @@ export default function Home() {
                   if (nama == "") {
                     alert("Please fill in your name first");
                   } else {
-                    setIsOpen(true);
+                    handleCap();
                   }
                 }}
               >
@@ -321,6 +331,12 @@ export default function Home() {
                     }}
                     className="rounded-lg border-2 border-gray w-full mt-0 py-2 px-3.5"
                   ></input>
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey={siteKey}
+                    onChange={onReCAPTCHAChange}
+                  />
                 </div>
                 <div className="w-100%">
                   <div
@@ -328,7 +344,7 @@ export default function Home() {
                       e.preventDefault();
                       nama == ""
                         ? alert("Please fill in your name first")
-                        : setIsOpen(true);
+                        : handleCap();
                     }}
                     className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
                   >
@@ -378,7 +394,8 @@ export default function Home() {
                       directed and follow the mood of your conversing
                     </p>
                     <b className="font-poppins text-xs text-gray mt-2">
-                      NOTE: Please remember, this model is still under training, so there is a possibility of misscommunication.
+                      NOTE: Please remember, this model is still under training,
+                      so there is a possibility of misscommunication.
                     </b>
                     <div
                       onClick={() => {
@@ -407,7 +424,8 @@ export default function Home() {
                       and will follow where you take this conversation
                     </p>
                     <b className="font-poppins text-xs text-gray mt-2">
-                      NOTE: Please remember, this model is still under training, so there is a possibility of misscommunication.
+                      NOTE: Please remember, this model is still under training,
+                      so there is a possibility of misscommunication.
                     </b>
                     <div
                       onClick={() => {
@@ -431,4 +449,11 @@ export default function Home() {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const siteKey = process.env.CAPSITEK;
+  // Pass data to the page via props
+  return { props: { siteKey } };
 }
