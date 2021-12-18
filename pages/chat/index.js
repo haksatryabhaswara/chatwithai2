@@ -5,7 +5,6 @@ import { Dialog } from "@headlessui/react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Home({ siteKey }) {
-  
   const [listChat, setLC] = useState([]);
   const [chat, setChat] = useState("");
   const [nama, setNama] = useState("");
@@ -139,8 +138,8 @@ export default function Home({ siteKey }) {
   };
 
   const handleCap = async () => {
-    // recaptchaRef.current.execute();
-    setIsOpen(true);
+    recaptchaRef.current.execute();
+    // setIsOpen(true);
   };
 
   const onReCAPTCHAChange = (captchaCode) => {
@@ -332,12 +331,12 @@ export default function Home({ siteKey }) {
                     }}
                     className="rounded-lg border-2 border-gray w-full mt-0 py-2 px-3.5"
                   ></input>
-                  {/* <ReCAPTCHA
+                  <ReCAPTCHA
                     ref={recaptchaRef}
-                    // size="invisible"
+                    size="invisible"
                     sitekey={siteKey}
                     onChange={onReCAPTCHAChange}
-                  /> */}
+                  />
                 </div>
                 <div className="w-100%">
                   <div
