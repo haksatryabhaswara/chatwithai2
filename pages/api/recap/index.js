@@ -22,7 +22,7 @@ export default function handler(req, res) {
         )
           .then((response) => response.json())
           .then((dataCapGoogle) => {
-            console.log(dataCapGoogle);
+            console.log(dataCapGoogle.success);
             if (dataCapGoogle.success == true) {
               const data = {
                 prompt: req.body.prompt,
