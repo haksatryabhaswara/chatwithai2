@@ -159,7 +159,7 @@ export default function Home({ siteKey }) {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TokkuAI | JustTalk</title>
+        <title>Chat Room | TokkuAI</title>
         <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
