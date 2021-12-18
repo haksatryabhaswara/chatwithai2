@@ -333,7 +333,7 @@ export default function Home({ siteKey }) {
                   ></input>
                   <ReCAPTCHA
                     ref={recaptchaRef}
-                    // size="invisible"
+                    size="invisible"
                     sitekey={siteKey}
                     onChange={onReCAPTCHAChange}
                   />
