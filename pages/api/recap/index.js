@@ -10,8 +10,8 @@ export default function handler(req, res) {
         res.status(405).end();
         return resolve();
       } else {
-        const responseCapGoogle = await fetch(
-          `https://www.google.com/recaptcha/api/siteverify?secret=6Lemga4dAAAAAEHBmilzMyMKfNtoL15GeiXkSEcS&response=03AGdBq26AERi0Ujm4xwAC2MLaQLYAu-izxPbvWW-2wChiWrzJAyza_FR1J4OtcxVFnsNoPf3Nn-E-MovLmR8mfEKHiw4zlmhWli3Ea5LOH3mWB9MLbma5Rg_eaIvqbhXPsvYtkQ3kJ7TZaQIGIp0cwx8KIQy2S98YSha7gKBPexyb6xUmEJjq3fyk2iM_1leSCw86l7KlTe-4vSsUz1OwzOvwSSfnTEBsNTYwmdthD8MLgrxu6PPKRkUw1GMB4KpmPWbdnZrg38AR6GUNWFdCNr1HsAKzTW_afwvAyjrRNHcUyuOxCZWRfbTyKejlLa7yls3iaMeT5hJWr7KDIUkzAmFzvcB_M59Pv2Z3_PYpXr6GZ1YPMnLdGIJyFqZONtDXeT8Ip8W8kSofW29K0Ej3wPi_EX49hc_Edw2aKWo3AZGuKZXidsweTli8iI_xzEXVjvZQ-lehjZHS`,
+        fetch(
+          "https://www.google.com/recaptcha/api/siteverify?secret=6Lemga4dAAAAAEHBmilzMyMKfNtoL15GeiXkSEcS&response=03AGdBq26AERi0Ujm4xwAC2MLaQLYAu-izxPbvWW-2wChiWrzJAyza_FR1J4OtcxVFnsNoPf3Nn-E-MovLmR8mfEKHiw4zlmhWli3Ea5LOH3mWB9MLbma5Rg_eaIvqbhXPsvYtkQ3kJ7TZaQIGIp0cwx8KIQy2S98YSha7gKBPexyb6xUmEJjq3fyk2iM_1leSCw86l7KlTe-4vSsUz1OwzOvwSSfnTEBsNTYwmdthD8MLgrxu6PPKRkUw1GMB4KpmPWbdnZrg38AR6GUNWFdCNr1HsAKzTW_afwvAyjrRNHcUyuOxCZWRfbTyKejlLa7yls3iaMeT5hJWr7KDIUkzAmFzvcB_M59Pv2Z3_PYpXr6GZ1YPMnLdGIJyFqZONtDXeT8Ip8W8kSofW29K0Ej3wPi_EX49hc_Edw2aKWo3AZGuKZXidsweTli8iI_xzEXVjvZQ-lehjZHS",
           {
             headers: {
               "Content-Type":
