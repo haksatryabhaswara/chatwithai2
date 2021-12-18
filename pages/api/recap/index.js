@@ -22,6 +22,7 @@ export default function handler(req, res) {
         )
           .then((response) => response.json())
           .then((dataCapGoogle) => {
+            console.log(req.headers.captcha);
             console.log(dataCapGoogle.success);
             if (dataCapGoogle.success == true) {
               const data = {
