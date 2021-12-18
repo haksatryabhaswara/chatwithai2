@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className="bg-gray-700">
       <Head>
-        <title>TokkuAIX | JustTalk</title>
+        <title>TokkuAI | JustTalk</title>
         <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
