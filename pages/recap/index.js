@@ -15,6 +15,8 @@ export default function Home({ siteKey }) {
   const [prosesChat, setPC] = useState(false);
   const [nomor, setNomor] = useState(Math.floor(Math.random() * 8 + 1));
 
+  const [capCode, setCC] = useState("");
+
   const newUser = async () => {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
@@ -88,12 +90,13 @@ export default function Home({ siteKey }) {
     const data = {
       prompt: dataPrompt,
     };
-    const url = "api/chat";
+    const url = "api/recap";
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Token: "eb11b5397527d8c2dfef407f98ba831a",
+        Captcha: capCode,
       },
       body: JSON.stringify(data),
     })
@@ -148,7 +151,7 @@ export default function Home({ siteKey }) {
     if (!captchaCode) {
       return;
     }
-    alert(captchaCode);
+    setCC(captchaCode);
     // Else reCAPTCHA was executed successfully so proceed with the
     // alert
     setIsOpen(true);
