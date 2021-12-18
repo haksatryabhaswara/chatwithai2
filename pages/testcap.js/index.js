@@ -139,8 +139,7 @@ export default function Home({ siteKey }) {
   };
 
   const handleCap = async () => {
-    // recaptchaRef.current.execute();
-    setIsOpen(true);
+    recaptchaRef.current.execute();
   };
 
   const onReCAPTCHAChange = (captchaCode) => {
@@ -332,12 +331,12 @@ export default function Home({ siteKey }) {
                     }}
                     className="rounded-lg border-2 border-gray w-full mt-0 py-2 px-3.5"
                   ></input>
-                  {/* <ReCAPTCHA
+                  <ReCAPTCHA
                     ref={recaptchaRef}
                     // size="invisible"
                     sitekey={siteKey}
                     onChange={onReCAPTCHAChange}
-                  /> */}
+                  />
                 </div>
                 <div className="w-100%">
                   <div
