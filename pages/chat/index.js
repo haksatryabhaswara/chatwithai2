@@ -368,7 +368,7 @@ export default function Home({ siteKey }) {
           >
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-30"></Dialog.Overlay>
             <div className="w-100% h-screen flex justify-center items-center px-4">
-              <div className="bg-white w-96 py-8 px-6 rounded-md z-20 max-w-xs">
+              <div className="bg-white w-96 py-8 px-6 rounded-md z-20 max-w-xs max-h-70 overflow-auto">
                 <div>
                   <b className="font-poppins">What you say:</b>
                   <p className="font-poppins">{text}</p>
