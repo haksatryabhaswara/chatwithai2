@@ -10,10 +10,16 @@ export default function Home({ siteKey }) {
   const [nama, setNama] = useState("");
   const [stage, setStage] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isGrammarOpen, setIsGrammarOpen] = useState(false);
   const recaptchaRef = React.createRef();
+
+  const [text, setText] = useState("");
+  const [newText, setNewText] = useState("");
 
   const [prosesChat, setPC] = useState(false);
   const [nomor, setNomor] = useState(Math.floor(Math.random() * 8 + 1));
+
+  const [grammarCheck, setGrammarCheck] = useState(false);
 
   const newUser = async () => {
     const dataNEWLINE = {
@@ -62,12 +68,12 @@ export default function Home({ siteKey }) {
         // );
       }
       if (listChat[listChat.length - 1].sender == "Human") {
-        testSend();
+        sendChat();
       }
     }
   }, [listChat]);
 
-  const testSend = async () => {
+  const sendChat = async () => {
     setPC(true);
     let chooseAI;
     if (nomor % 2 == 0) {
@@ -81,7 +87,8 @@ export default function Home({ siteKey }) {
       dataPrompt = `${chooseAI}\\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
     } else {
       dataPrompt =
-        "Marv is a chatbot that reluctantly answers questions.\\n" +
+        chooseAI +
+        "\\n" +
         listChat.map(({ sender, data }) => sender + ": " + data).join("\\n") +
         "\nAI:";
     }
@@ -113,6 +120,38 @@ export default function Home({ siteKey }) {
         }
 
         setPC(false);
+      });
+  };
+
+  useEffect(() => {
+    if (text != "") {
+      checkGrammar();
+    }
+  }, [text]);
+
+  const checkGrammar = async () => {
+    setIsGrammarOpen(true);
+    setGrammarCheck(true);
+    const dataPrompt = "Original: " + text + "\nStandard American English:";
+
+    const data = {
+      prompt: dataPrompt,
+    };
+    const url = "api/grammar";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Token: "eb11b5397527d8c2dfef407f98ba831a",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        // console.log(responseJson.choices[0].text);
+        setGrammarCheck(false);
+        const dataAI = responseJson.choices[0].text;
+        setNewText(dataAI);
       });
   };
 
@@ -162,7 +201,7 @@ export default function Home({ siteKey }) {
         <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
 
         <meta property="og:type" content="website" />
@@ -170,7 +209,7 @@ export default function Home({ siteKey }) {
         <meta property="og:title" content="TokkuAI #JustTalk" />
         <meta
           property="og:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="og:image"
@@ -182,7 +221,7 @@ export default function Home({ siteKey }) {
         <meta property="twitter:title" content="TokkuAI #JustTalk" />
         <meta
           property="twitter:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="twitter:image"
@@ -212,11 +251,16 @@ export default function Home({ siteKey }) {
                       key={item.id}
                       className={`flex ${
                         item.sender == "Human"
-                          ? "justify-end items-end"
+                          ? "justify-end cursor-pointer items-end"
                           : "justify-start items-start"
                       } ${i == 0 ? "mt-0" : "mt-1"} ${
                         i == listChat.length - 1 ? "mb-2" : "mb-1"
                       }`}
+                      onClick={() => {
+                        if (item.sender == "Human") {
+                          setText(item.data);
+                        }
+                      }}
                     >
                       <div
                         className={`${
@@ -296,6 +340,41 @@ export default function Home({ siteKey }) {
               </div>
             </div>
           </div>
+          <Dialog
+            open={isGrammarOpen}
+            onClose={() => {
+              setIsGrammarOpen(false);
+              setText("");
+              setNewText("");
+            }}
+            className="fixed z-10 inset-0 overflow-y-auto"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30"></Dialog.Overlay>
+            <div className="w-100% h-screen flex justify-center items-center px-4">
+              <div className="bg-white w-96 py-8 px-6 rounded-md z-20 max-w-xs">
+                <div>
+                  <b className="font-poppins">What you say:</b>
+                  <p className="font-poppins">{text}</p>
+                  <b className="font-poppins mt-2">Our recommendation</b>
+                  <p className="font-poppins">
+                    {newText == "" ? "Thinking..." : newText}
+                  </p>
+                  <div
+                    onClick={() => {
+                      setIsGrammarOpen(false);
+                      setText("");
+                      setNewText("");
+                    }}
+                    className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
+                  >
+                    <div>
+                      <b className="font-poppins text-white mr-2">Close</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Dialog>
         </main>
       ) : (
         <main className="px-8">

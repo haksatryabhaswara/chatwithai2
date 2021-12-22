@@ -72,7 +72,7 @@ export default function Home() {
         <meta name="title" content="TokkuAI | JustTalk" />
         <meta
           name="description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
 
         <meta property="og:type" content="website" />
@@ -80,7 +80,7 @@ export default function Home() {
         <meta property="og:title" content="TokkuAI #JustTalk" />
         <meta
           property="og:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="og:image"
@@ -92,7 +92,7 @@ export default function Home() {
         <meta property="twitter:title" content="TokkuAI #JustTalk" />
         <meta
           property="twitter:description"
-          content="We help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
+          content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
         <meta
           property="twitter:image"
