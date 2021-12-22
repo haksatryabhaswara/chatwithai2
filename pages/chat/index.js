@@ -21,6 +21,8 @@ export default function Home({ siteKey }) {
 
   const [grammarCheck, setGrammarCheck] = useState(false);
 
+  const [boundary, setBoundary] = useState(10);
+
   const newUser = async () => {
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
@@ -130,29 +132,42 @@ export default function Home({ siteKey }) {
   }, [text]);
 
   const checkGrammar = async () => {
-    setIsGrammarOpen(true);
-    setGrammarCheck(true);
-    const dataPrompt = "Original: " + text + "\nStandard American English:";
+    if (boundary > 0) {
+      setNewText("");
+      setIsGrammarOpen(true);
+      setGrammarCheck(true);
+      const dataPrompt = "Original: " + text + "\nStandard American English:";
 
-    const data = {
-      prompt: dataPrompt,
-    };
-    const url = "api/grammar";
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Token: "eb11b5397527d8c2dfef407f98ba831a",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        // console.log(responseJson.choices[0].text);
-        setGrammarCheck(false);
-        const dataAI = responseJson.choices[0].text;
-        setNewText(dataAI);
-      });
+      const data = {
+        prompt: dataPrompt,
+      };
+      const url = "api/grammar";
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Token: "eb11b5397527d8c2dfef407f98ba831a",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          // console.log(responseJson.choices[0].text);
+          setBoundary(boundary - 1);
+          setGrammarCheck(false);
+          let dataAI;
+          if (responseJson.choices[0].text == "") {
+            dataAI = "We didn't have any recommendation.";
+          } else {
+            dataAI = responseJson.choices[0].text;
+          }
+          setNewText(dataAI);
+        });
+    } else {
+      alert(
+        "You have crossed the limit of checking grammar, you can do a topup to increase your limit"
+      );
+    }
   };
 
   const AILine = async ({ responseText }) => {
@@ -257,8 +272,10 @@ export default function Home({ siteKey }) {
                         i == listChat.length - 1 ? "mb-2" : "mb-1"
                       }`}
                       onClick={() => {
-                        if (item.sender == "Human") {
-                          setText(item.data);
+                        if (i > 0) {
+                          if (item.sender == "Human") {
+                            setText(item.data);
+                          }
                         }
                       }}
                     >
@@ -370,6 +387,21 @@ export default function Home({ siteKey }) {
                     <div>
                       <b className="font-poppins text-white mr-2">Close</b>
                     </div>
+                  </div>
+                  <div
+                    className="mt-2 flex justify-center items-center cursor-pointer"
+                    onClick={() => {
+                      checkGrammar();
+                    }}
+                  >
+                    <b className="font-poppins text-sm text-gray">
+                      another recommendation?
+                    </b>
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <b className="font-poppins text-xs text-lightgray">
+                      {boundary} left
+                    </b>
                   </div>
                 </div>
               </div>
