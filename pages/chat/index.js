@@ -391,7 +391,9 @@ export default function Home({ siteKey }) {
                   <div
                     className="mt-2 flex justify-center items-center cursor-pointer"
                     onClick={() => {
-                      checkGrammar();
+                      if (!grammarCheck) {
+                        checkGrammar();
+                      }
                     }}
                   >
                     <b className="font-poppins text-sm text-gray">
