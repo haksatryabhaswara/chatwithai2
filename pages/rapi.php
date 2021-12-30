@@ -443,7 +443,7 @@ if ($_POST['id'] != "") { //cek jika member
     if ($message) {
         echo "GERBANG KEBUKA";
     }
-    include "buka.php";
+    
     header("location:script.php");
     //header("location:voice.php?in=3");
 

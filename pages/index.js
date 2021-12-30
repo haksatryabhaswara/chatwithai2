@@ -74,7 +74,10 @@ export default function Home() {
           name="description"
           content="TokkuAI can help you to talk, anything, anytime, and anywhere, we are here just to help you to talk."
         />
-
+        <meta
+          name="keywords"
+          content="TokkuAI, Tokku, AI, chatbot, messaging, learn english, learn with ai, talk with ai"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.tokkuai.com/" />
         <meta property="og:title" content="TokkuAI #JustTalk" />
