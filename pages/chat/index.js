@@ -8,7 +8,7 @@ export default function Home({ siteKey }) {
   const [listChat, setLC] = useState([]);
   const [chat, setChat] = useState("");
   const [nama, setNama] = useState("");
-  const [stage, setStage] = useState(true);
+  const [stage, setStage] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isGrammarOpen, setIsGrammarOpen] = useState(false);
   const recaptchaRef = React.createRef();
