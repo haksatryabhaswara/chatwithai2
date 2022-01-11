@@ -4,7 +4,7 @@ export default function handler(req, res) {
       res.status(400).send({ message: "Missing Credentials.." });
       return;
     } else {
-        // console.log(req.body.prompt);
+        console.log(req.body.prompt);
       // console.log(req.headers.token);
       if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
         res.status(405).end();
@@ -17,7 +17,7 @@ export default function handler(req, res) {
           top_p: 1.0,
           frequency_penalty: 1,
           presence_penalty: 0.6,
-          stop: ["\\n", " Human:", " AI:"],
+          stop: ["\n", "Human:", "AI:"],
         };
         fetch("https://api.openai.com/v1/engines/ada/completions", {
           body: JSON.stringify(data),
