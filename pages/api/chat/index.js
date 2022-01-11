@@ -4,7 +4,7 @@ export default function handler(req, res) {
       res.status(400).send({ message: "Missing Credentials.." });
       return;
     } else {
-        console.log(req.body.prompt);
+        // console.log(req.body.prompt);
       // console.log(req.headers.token);
       if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
         res.status(405).end();
