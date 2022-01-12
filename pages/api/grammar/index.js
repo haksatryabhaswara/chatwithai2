@@ -19,7 +19,7 @@ export default function handler(req, res) {
             presence_penalty: 0.6,
             stop: ["\n"],
           };
-          fetch("https://api.openai.com/v1/engines/curie/completions", {
+          fetch("https://api.openai.com/v1/engines/davinci/completions", {
             body: JSON.stringify(data),
             headers: {
               "Content-Type": "application/json",

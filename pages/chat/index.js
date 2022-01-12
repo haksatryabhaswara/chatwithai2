@@ -125,7 +125,7 @@ export default function Home({ siteKey }) {
 
   useEffect(() => {
     if (text != "") {
-      checkGrammar();
+      // checkGrammar();
     }
   }, [text]);
 
@@ -267,7 +267,7 @@ export default function Home({ siteKey }) {
                       key={item.id}
                       className={`flex ${
                         item.sender == "Human"
-                          ? "justify-end cursor-pointer items-end"
+                          ? "justify-end items-end"
                           : "justify-start items-start"
                       } ${i == 0 ? "mt-0" : "mt-1"} ${
                         i == listChat.length - 1 ? "mb-2" : "mb-1"
