@@ -93,7 +93,7 @@ export default function Home({ siteKey }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Token: "eb11b5397527d8c2dfef407f98ba831a",
+        Authorization: `Bearer eb11b5397527d8c2dfef407f98ba831a`,
       },
       body: JSON.stringify(data),
     })
@@ -345,7 +345,7 @@ export default function Home({ siteKey }) {
                 </div>
                 <div className="flex justify-center items-center mt-2">
                   <b className="font-poppins text-gray text-xs text-center">
-                    Version 0.4.5
+                    Version 0.4.7
                   </b>
                 </div>
               </div>

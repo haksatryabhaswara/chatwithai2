@@ -1,12 +1,33 @@
-export default function handler(req, res) {
+import Cors from 'cors'
+
+const cors = Cors({
+  origin: ["https://localhost:3000/","https://tokkuai.com/","https://www.tokkuai.com/"],
+  methods: ['POST'],
+})
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
+}
+async function handler(req, res) {
+  await runMiddleware(req, res, cors)
   return new Promise((resolve, reject) => {
     if (req.method !== "POST") {
       res.status(400).send({ message: "Missing Credentials.." });
       return;
     } else {
       // console.log(req.body.nomor);
-      // console.log(req.headers.token);
-      if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
+      // console.log(req.headers.authorization);
+      if (req.headers.authorization != "Bearer eb11b5397527d8c2dfef407f98ba831a") {
         res.status(405).end();
         return resolve();
       } else {
@@ -55,3 +76,5 @@ export default function handler(req, res) {
     }
   });
 }
+
+export default handler
