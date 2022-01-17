@@ -86,14 +86,15 @@ export default function Home({ siteKey }) {
     }
     let dataPrompt;
     if (listChat.length == 1) {
-      dataPrompt = `${chooseAI}\n\nHuman: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
+      dataPrompt = `Human: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
     } else {
-      dataPrompt = `${chooseAI}\n\nHuman: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat
+      dataPrompt = `Human: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat
         .map(({ sender, data }) => sender + ": " + data)
         .join("\n")}\nAI:`;
     }
     const data = {
       prompt: dataPrompt,
+      nomor: nomor,
     };
     const url = "api/chat";
     fetch(url, {

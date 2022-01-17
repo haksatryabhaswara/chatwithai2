@@ -4,14 +4,21 @@ export default function handler(req, res) {
       res.status(400).send({ message: "Missing Credentials.." });
       return;
     } else {
-        // console.log(req.body.prompt);
+      // console.log(req.body.nomor);
       // console.log(req.headers.token);
       if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
         res.status(405).end();
         return resolve();
       } else {
+        let chooseAI;
+        if (req.body.nomor % 2 == 0) {
+          chooseAI = "Marv is a chatbot that reluctantly answers questions.";
+        } else {
+          chooseAI =
+            "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
+        }
         const data = {
-          prompt: req.body.prompt,
+          prompt: chooseAI + "\n\n" + req.body.prompt,
           temperature: 0.9,
           max_tokens: 100,
           top_p: 1.0,

@@ -77,18 +77,11 @@ export default function Home({ siteKey }) {
 
   const sendChat = async () => {
     setPC(true);
-    let chooseAI;
-    if (nomor % 2 == 0) {
-      chooseAI = "Marv is a chatbot that reluctantly answers questions.";
-    } else {
-      chooseAI =
-        "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
-    }
     let dataPrompt;
     if (listChat.length == 1) {
-      dataPrompt = `${chooseAI}\n\nHuman: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
+      dataPrompt = `Human: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat[0].sender}: ${listChat[0].data}\nAI:`;
     } else {
-      dataPrompt = `${chooseAI}\n\nHuman: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat
+      dataPrompt = `Human: Hai, my name is ${nama}\nAI:Hi ${nama}, i'm TokkuAI glad to talk to you\n${listChat
         .map(({ sender, data }) => sender + ": " + data)
         .join("\n")}\nAI:`;
     }
