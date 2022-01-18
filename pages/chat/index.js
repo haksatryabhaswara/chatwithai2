@@ -345,7 +345,7 @@ export default function Home({ siteKey }) {
                 </div>
                 <div className="flex justify-center items-center mt-2">
                   <b className="font-poppins text-gray text-xs text-center">
-                    Version 0.4.7
+                    Version 0.4.8
                   </b>
                 </div>
               </div>
@@ -517,6 +517,18 @@ export default function Home({ siteKey }) {
                         </b>
                       </div>
                     </div>
+                    <div
+                      onClick={() => {
+                        setNomor(nomor + 1);
+                      }}
+                      className="mt-3"
+                    >
+                      <div className="w-100% flex justify-center items-center cursor-pointer">
+                        <b className="font-poppins text-gray text-sm text-center">
+                          Find another AI
+                        </b>
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <div>
@@ -544,6 +556,18 @@ export default function Home({ siteKey }) {
                       <div>
                         <b className="font-poppins text-white mr-2">
                           Talk Now!
+                        </b>
+                      </div>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setNomor(nomor + 1);
+                      }}
+                      className="mt-3"
+                    >
+                      <div className="w-100% flex justify-center items-center cursor-pointer">
+                        <b className="font-poppins text-gray text-sm text-center">
+                          Find another AI
                         </b>
                       </div>
                     </div>
