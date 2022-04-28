@@ -1,9 +1,13 @@
-import Cors from 'cors'
+import Cors from "cors";
 
 const cors = Cors({
-  origin: ["https://localhost:3000/","https://tokkuai.com/","https://www.tokkuai.com/"],
-  methods: ['POST'],
-})
+  origin: [
+    "https://localhost:3000/",
+    "https://tokkuai.com/",
+    "https://www.tokkuai.com/",
+  ],
+  methods: ["POST"],
+});
 
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
@@ -11,15 +15,15 @@ function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
     fn(req, res, (result) => {
       if (result instanceof Error) {
-        return reject(result)
+        return reject(result);
       }
 
-      return resolve(result)
-    })
-  })
+      return resolve(result);
+    });
+  });
 }
 async function handler(req, res) {
-  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, cors);
   return new Promise((resolve, reject) => {
     if (req.method !== "POST") {
       res.status(400).send({ message: "Missing Credentials.." });
@@ -27,7 +31,7 @@ async function handler(req, res) {
     } else {
       // console.log(req.body.nomor);
       // console.log(req.headers.authorization);
-      if (req.headers.authorization != "Bearer eb11b5397527d8c2dfef407f98ba831a") {
+      if (req.headers.authorization != "Bearer " + process.env.BR) {
         res.status(405).end();
         return resolve();
       } else {
@@ -47,7 +51,7 @@ async function handler(req, res) {
           presence_penalty: 0.6,
           stop: ["\n", "Human:", "AI:"],
         };
-        fetch("https://api.openai.com/v1/engines/curie/completions", {
+        fetch(process.env.linkChatAPIAI, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -77,4 +81,4 @@ async function handler(req, res) {
   });
 }
 
-export default handler
+export default handler;

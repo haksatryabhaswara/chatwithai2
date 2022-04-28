@@ -6,7 +6,7 @@ export default function handler(req, res) {
       } else {
           console.log(req.body.prompt);
         // console.log(req.headers.token);
-        if (req.headers.token != "eb11b5397527d8c2dfef407f98ba831a") {
+        if (req.headers.token != process.env.token) {
           res.status(405).end();
           return resolve();
         } else {
@@ -19,7 +19,7 @@ export default function handler(req, res) {
             presence_penalty: 0.6,
             stop: ["\n"],
           };
-          fetch("https://api.openai.com/v1/engines/davinci/completions", {
+          fetch(process.env.linkGrammarAPIAI, {
             body: JSON.stringify(data),
             headers: {
               "Content-Type": "application/json",
