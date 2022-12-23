@@ -109,7 +109,7 @@ export default function Home({ siteKey }) {
           } else {
             dataAI = responseJson.choices[0].text;
           }
-          AILine({ responseText: dataAI });
+          AILine({ responseText: responseJson.choices[0].text });
         }
 
         setPC(false);
@@ -345,7 +345,7 @@ export default function Home({ siteKey }) {
                 </div>
                 <div className="flex justify-center items-center mt-2">
                   <b className="font-poppins text-gray text-xs text-center">
-                    Version 0.4.8
+                    Version 0.5.8
                   </b>
                 </div>
               </div>
@@ -585,6 +585,8 @@ export default function Home({ siteKey }) {
 export async function getServerSideProps() {
   // Fetch data from external API
   const siteKey = process.env.CAPSITEK;
+  // const siteKey = "";
+  console.log(process.env.CAPSITEK)
   // Pass data to the page via props
   return { props: { siteKey } };
 }

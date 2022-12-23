@@ -22,6 +22,7 @@ export default function Home({ siteKey }) {
   const [grammarCheck, setGrammarCheck] = useState(false);
 
   const [boundary, setBoundary] = useState(10);
+  const [maxChatLength, setMaxChatLength] = useState(60);
 
   const newUser = async () => {
     const dataNEWLINE = {
@@ -35,10 +36,17 @@ export default function Home({ siteKey }) {
   };
 
   const newLine = async () => {
+    let chatCrop;
+    // check if chat length is more than maxChatLength, crop it to maxChatLength
+    if (chat.length > maxChatLength) {
+      chatCrop = chat.slice(0, maxChatLength);
+    } else {
+      chatCrop = chat;
+    }
     const dataNEWLINE = {
       id: Math.floor(Math.random * 100000),
       sender: "Human",
-      data: chat,
+      data: chatCrop,
     };
     if (listChat.length > 19) {
       setLC((listChat) => [...listChat.slice(1), dataNEWLINE]);
@@ -117,7 +125,7 @@ export default function Home({ siteKey }) {
           } else {
             dataAI = responseJson.choices[0].text;
           }
-          AILine({ responseText: dataAI });
+          AILine({ responseText: responseJson.choices[0].text });
         }
 
         setPC(false);
@@ -309,11 +317,14 @@ export default function Home({ siteKey }) {
                       <input
                         autoFocus
                         type=""
-                        maxLength={"100"}
+                        maxLength={"60"}
                         value={chat}
-                        placeholder={"Your message.."}
+                        placeholder={"Your message.. (max 60 char)"}
                         onChange={(e) => {
-                          setChat(e.target.value);
+                          if (e.length > 60) {
+                          } else {
+                            setChat(e.target.value);
+                          }
                         }}
                         className="rounded-lg border-2 border-gray w-full mt-0 py-2 px-3.5 hover:shadow-lg"
                       ></input>
@@ -350,7 +361,7 @@ export default function Home({ siteKey }) {
                 </div>
                 <div className="flex justify-center items-center mt-2">
                   <b className="font-poppins text-gray text-xs text-center">
-                    Version 0.4.8
+                    Version 0.5.8
                   </b>
                 </div>
               </div>
@@ -517,9 +528,7 @@ export default function Home({ siteKey }) {
                       className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
                     >
                       <div>
-                        <b className="font-poppins text-white">
-                          Talk Now!
-                        </b>
+                        <b className="font-poppins text-white">Talk Now!</b>
                       </div>
                     </div>
                     <div
@@ -559,9 +568,7 @@ export default function Home({ siteKey }) {
                       className="bg-primary rounded-lg w-100% h-full flex justify-center items-center cursor-pointer hover:shadow-lg transform duration-300 ease-in-out mt-2 py-3"
                     >
                       <div>
-                        <b className="font-poppins text-white">
-                          Talk Now!
-                        </b>
+                        <b className="font-poppins text-white">Talk Now!</b>
                       </div>
                     </div>
                     <div
@@ -589,7 +596,8 @@ export default function Home({ siteKey }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const siteKey = process.env.CAPSITEK;
+  // const siteKey = process.env.CAPSITEK;
+  const siteKey = "";
   // Pass data to the page via props
   return { props: { siteKey } };
 }

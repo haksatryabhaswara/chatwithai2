@@ -61,7 +61,7 @@ async function handler(req, res) {
         })
           .then((response) => response.json())
           .then((dataRes) => {
-            // console.log(dataRes);
+            console.log(dataRes);
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
             res.setHeader(
